@@ -1,0 +1,12 @@
+import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
+import { api } from '../services/api.js'
+
+export default function Movies() {
+  const [movies, setMovies] = useState([]); const [search, setSearch] = useState(''); const [genre,setGenre]=useState('');const [language,setLanguage]=useState('');const [status,setStatus]=useState('NOW_SHOWING'); const [error, setError] = useState(''); const [loading, setLoading] = useState(true)
+  useEffect(() => { const timer = setTimeout(async () => { try { setLoading(true); setMovies(await api(`/movies?search=${encodeURIComponent(search)}&genre=${encodeURIComponent(genre)}&language=${encodeURIComponent(language)}&status=${status}`)); setError('') } catch (err) { setError(err.message) } finally { setLoading(false) } }, 250); return () => clearTimeout(timer) }, [search,genre,language,status])
+  return <><div className="page-heading"><div><p className="eyebrow">IN THEATRES</p><h1 className="page-title">Movies to watch</h1></div><input className="search" value={search} onChange={e => setSearch(e.target.value)} placeholder="Search movies..." /></div><div className="filters"><select value={genre} onChange={e=>setGenre(e.target.value)}><option value="">All genres</option><option>Drama</option><option>Sci-Fi</option><option>Thriller</option><option>Romance</option></select><select value={language} onChange={e=>setLanguage(e.target.value)}><option value="">All languages</option><option>Hindi</option><option>English</option></select><select value={status} onChange={e=>setStatus(e.target.value)}><option value="NOW_SHOWING">Now showing</option><option value="COMING_SOON">Coming soon</option><option value="">All statuses</option></select></div>
+    {error && <p className="notice">{error} Start the backend and add sample movies to see the catalogue.</p>}
+    {loading ? <p className="tagline">Loading movies...</p> : <section className="movie-grid">{movies.map(movie => <Link className="movie-card" to={`/movies/${movie.id}`} key={movie.id}><img src={movie.poster_url || 'https://placehold.co/400x600/181c2f/ffffff?text=CineVerse'} alt={`${movie.title} poster`} /><div className="movie-card-content"><h2>{movie.title}</h2><p>★ {movie.rating || 'New'} · {movie.language}</p><span>{movie.genre}</span></div></Link>)}</section>}
+    {!loading && !error && movies.length === 0 && <p className="tagline">No movies match your search.</p>}</>
+}

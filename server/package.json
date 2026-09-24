@@ -1,0 +1,16 @@
+{
+  "name": "cineverse-server",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": { "dev": "node --watch server.js", "start": "node server.js", "seed": "node db/seed.js", "test": "node --test" },
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "pg": "^8.16.3",
+    "qrcode": "^1.5.4",
+    "razorpay": "^2.9.6"
+  }
+}

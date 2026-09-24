@@ -1,0 +1,2 @@
+import { Link, useParams } from 'react-router-dom'
+export default function BookingSuccess() { const { bookingId } = useParams(); return <section className="success card"><p className="eyebrow">PAYMENT VERIFIED</p><h1 className="page-title">Your tickets are booked!</h1><p className="tagline">Booking reference: {bookingId}</p><Link className="btn" to={`/bookings/${bookingId}`}>View ticket</Link></section> }

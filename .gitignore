@@ -1,0 +1,18 @@
+# ── Secrets (NEVER commit these) ─────────────────────────────
+# Real environment files. .env.example is committed; .env never is.
+.env
+server/.env
+.github_pat
+
+# ── Dependencies (restorable from package.json with npm install) ──
+node_modules/
+
+# ── Build output (generated, not source) ─────────────────────
+client/dist/
+
+# ── Editor / OS junk ─────────────────────────────────────────
+.DS_Store
+*.log
+.freebuff/
+.vscode/
+.idea/
