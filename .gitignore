@@ -14,5 +14,6 @@ client/dist/
 .DS_Store
 *.log
 .freebuff/
+.kilo/
 .vscode/
 .idea/
