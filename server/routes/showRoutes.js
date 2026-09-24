@@ -14,6 +14,20 @@ router.get('/', async (req, res, next) => {
   } catch (error) { next(error) }
 })
 
+router.get('/:showId', async (req, res, next) => {
+  try {
+    const { rows } = await pool.query(`SELECT sh.*, m.title AS movie_title,
+      c.name AS cinema_name, sc.name AS screen_name
+      FROM shows sh
+      JOIN movies m ON m.id = sh.movie_id
+      JOIN cinemas c ON c.id = sh.cinema_id
+      JOIN screens sc ON sc.id = sh.screen_id
+      WHERE sh.id = $1`, [req.params.showId])
+    if (!rows[0]) return res.status(404).json({ message: 'Show not found' })
+    res.json(rows[0])
+  } catch (error) { next(error) }
+})
+
 router.get('/:showId/seats', async (req, res, next) => {
   try {
     const { rows } = await pool.query(`SELECT s.id, s.row_label, s.seat_number, s.seat_type,
