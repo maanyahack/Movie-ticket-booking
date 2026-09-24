@@ -34,6 +34,8 @@ import BookingSuccess from './pages/BookingSuccess.jsx'
 import Bookings      from './pages/Bookings.jsx'
 import Ticket        from './pages/Ticket.jsx'
 import Admin         from './pages/Admin.jsx'
+import ForgotPassword from './pages/ForgotPassword.jsx'
+import ResetPassword from './pages/ResetPassword.jsx'
 
 export default function App() {
   return (
@@ -55,6 +57,8 @@ export default function App() {
         <Route path="/movies/:id"            element={<main className="page"><MovieDetails /></main>} />
         <Route path="/login"                 element={<Auth mode="login" />} />
         <Route path="/register"              element={<Auth mode="register" />} />
+  <Route path="/forgot-password"        element={<ForgotPassword />} />
+  <Route path="/reset-password"         element={<ResetPassword />} />
 
         {/* Booking flow — requires login (enforced in each page component) */}
         <Route path="/select-show/:movieId"  element={<main className="page"><ShowSelection /></main>} />

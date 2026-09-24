@@ -164,6 +164,7 @@ export default function Auth({ mode }) {
               : isRegister ? 'Create Account' : 'Login'}
           </button>
         </form>
+        {!isRegister && <p className="auth-help"><Link to="/forgot-password">Forgot password?</Link></p>}
 
         {/* ── Switch between Login / Register ─────────────────────────── */}
         <p className="auth-switch">

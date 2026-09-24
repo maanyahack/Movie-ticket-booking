@@ -1,3 +1,4 @@
+.auth-help { text-align: center; margin: -4px 0 20px; }.auth-help a { color: var(--accent-hover); }
 /* ============================================================
    DESIGN TOKENS — change the whole look by editing this block
    These are CSS custom properties (variables).
